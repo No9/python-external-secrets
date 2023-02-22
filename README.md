@@ -44,20 +44,20 @@ To use this repository:
    ```
 
 5. Follow `The Authentication` section in the [article](https://0x58.medium.com/ibm-cloud-secrets-manager-and-the-external-secrets-operator-1c94234993b6) to generate an key that will enable the external-secret provider to authorise with the secret manager instance.
-   You should finish at the command 
+   You should finish at the command
    ```
+   kubectl create ns python-space
    kubectl create secret generic secret-api-key \
-    --from-literal=apiKey='API_KEY_VALUE' -n external-secrets
+    --from-literal=apiKey='API_KEY_VALUE' -n python-space
    ```
 
-6. Apply the secret store 
+6. Apply the secret store
    ```
-      kubectl create -f secret-store.yaml
+      kubectl create -f secret-store.yaml -n python-space
    ```
 
 7. Create a namespace and create the external secret and the additional config stored in config secrets.
 ```bash
-   kubectl create ns python-space
    kubectl apply external-secret.yaml -n python-space
    kubectl apply config-secrets.yaml -n python-space
 ```
